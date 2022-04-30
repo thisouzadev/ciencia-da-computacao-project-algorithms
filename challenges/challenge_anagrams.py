@@ -1,7 +1,4 @@
-# https://www.arquivodecodigos.com.br/dicas/
-# 4157-python-exercicio-resolvido-de-python-strings-e-
-# caracteres-verificar-se-duas-palavras-sao-anagramas-uma-
-# da-outra-solucao-usando-dicionariohash-table.html
+#  daniel me deu uma ajuda e tornou meu codigo mais simples
 
 
 def is_anagram(first_string, second_string):
@@ -13,36 +10,25 @@ def is_anagram(first_string, second_string):
     if(len(first_string) != len(second_string)):
         return False
 
-# agora criamos dois dictionaries para as frequencias de
-# cada uma das palavras
-    freq_p1 = {}
-    freq_p2 = {}
-
-# agora registramos as frequências de letras na primeira
-# palavra
-    for letra in first_string:
-        # a letra já está no dicionário?
-        if letra in freq_p1:
-            freq_p1[letra] += 1  # aumenta a frequêcia desta letra
-        else:
-            freq_p1[letra] = 1  # ainda não estava no dicionário
-
-# agora registramos as frequências de letras na segunda
-# palavra
-    for letra in second_string:
-        # a letra já está no dicionário?
-        if letra in freq_p2:
-            freq_p2[letra] += 1  # aumenta a frequêcia desta letra
-        else:
-            freq_p2[letra] = 1  # ainda não estava no dicionário
-
-# registradas as frequências de letras das duas palavras,
-# chegou a hora de compararmos os dois dicionários
-    for chave in freq_p1:
-        # esta chave não está no segundo dicionário ou
-        # possui valores diferentes?
-        if chave not in freq_p2 or freq_p1[chave] != freq_p2[chave]:
+    for letter in first_string:
+        if letter not in second_string:
             return False
 
-    # se chegou até aqui então uma palavra é anagrama da outra
-    return True
+        second_string = second_string.replace(letter, "", 1)
+
+        if second_string == "":
+            return True
+
+
+def main():
+    first_string = input("Informe a primeira palavra: ")
+    second_string = input("Informe a segunda palavra: ")
+
+    if(is_anagram(first_string, second_string)):
+        print("As duas palavras são anagramas")
+    else:
+        print("As duas palavras não são anagramas")
+
+
+if __name__ == "__main__":
+    main()
